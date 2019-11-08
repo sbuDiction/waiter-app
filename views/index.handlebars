@@ -6,12 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/stylesheets/index.css">
+
     <title>Document</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/offcanvas/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="/stylesheets/shift.css">
 </head>
 
 <body>
     <div class="container bg-faded">
-        <h1 class="text-center">Welcome to waiter app</h1>
+        <h1 class="text-center">Welcome <span style="color: rgb(255, 60, 0);">{{name}}</span></h1>
+
         <div class="row">
         </div>
         <hr>
@@ -24,8 +48,9 @@
                                 <span class="input-group-text" id="addon-wrapping"><img
                                         src="https://img.icons8.com/office/24/000000/waiter.png"></span>
                             </div>
-                            <input type="text" name="waiter" class="form-control" placeholder="Waiter name"
-                                aria-label="Username" aria-describedby="addon-wrapping">
+                            <input type="text" name="waiter" value="{{name}}" class="form-control"
+                                placeholder="Waiter name" aria-label="Username" aria-describedby="addon-wrapping"
+                                required>
                         </div>
                     </div>
                 </div>
@@ -34,13 +59,14 @@
             <div class="row">
                 <div class="col-12">
                     <div class="justify-content-center text-center">
+                        {{#check_box}}
                         <div class="custom-control custom-checkbox custom-control-inline ">
-                            <input type="checkbox" name="day" value="Monday" class="custom-control-input"
-                                id="defaultInline1">
-                            <label class="custom-control-label" for="defaultInline1">Monday</label>
+                            <input type="checkbox" name="day" value="{{days_in_a_week}}" class="custom-control-input"
+                                id="{{element_id}}">
+                            <label class="custom-control-label" for="{{element_id}}">{{days_in_a_week}}</label>
                         </div>
-
-                        <!-- Default inline 2-->
+                        {{/check_box}}
+                        {{!-- <!-- Default inline 2-->
                         <div class="custom-control custom-checkbox custom-control-inline">
                             <input type="checkbox" name="day" value="Tuesday" class="custom-control-input"
                                 id="defaultInline2">
@@ -72,132 +98,172 @@
                             <input type="checkbox" name="day" value="Sunday" class="custom-control-input"
                                 id="defaultInline7">
                             <label class="custom-control-label" for="defaultInline7">Sunday</label>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
             <hr>
             <div class="row">
                 <div class="col-4 mx-auto text-center">
-                    <button type="submit" class="btn btn-dark text-center">Add shift</button>
+                    <button type="submit" class="btn btn-dark text-center">Update shift</button>
                 </div>
         </form>
-        <!--    </div>-->
-        <!--    <hr>-->
-        <!--    <div class="row">-->
-        <!--        <div class="col-4 mx-auto">-->
-        <!--            <div class="card card-body mb-2">-->
-        <!--                <h6>I'm .col-4</h6>-->
-        <!--                <code>.mx-auto</code>-->
-        <!--            </div>-->
-        <!--        </div>-->
-        <!--        <div class="col-4 mx-auto">-->
-        <!--            <div class="card card-body mb-2">-->
-        <!--                <h6>I'm .col-4</h6>-->
-        <!--                <code>.mx-auto</code>-->
-        <!--            </div>-->
-        <!--        </div>-->
-        <!--        <div class="col-4 mx-auto">-->
-        <!--            <div class="card card-body mb-2">-->
-        <!--                <h6>I'm .col-4</h6>-->
-        <!--                <code>.mx-auto</code>-->
-        <!--            </div>-->
-        <!--        </div>-->
-        <!--        <div class="col-4 mx-auto">-->
-        <!--            <div class="card card-body mb-2">-->
-        <!--                <h6>I'm .col-4</h6>-->
-        <!--                <code>.mx-auto</code> center uneven grid cols-->
-        <!--            </div>-->
-        <!--        </div>-->
-        <!--    </div>-->
-        <!--    <hr>-->
-        <!--    <h4 class="text-center">Flexbox utils in Bootstrap 4</h4>-->
-        <!--    <code>.row.justify-content-between</code>-->
-        <!--    <div class="row justify-content-between">-->
-        <!--        <div class="col-3">-->
-        <!--            <div class="card card-body mb-2">col-3</div>-->
-        <!--        </div>-->
-        <!--        <div class="col-3">-->
-        <!--            <div class="card card-body mb-2">col-3</div>-->
-        <!--        </div>-->
-        <!--        <div class="col-3">-->
-        <!--            <div class="card card-body mb-2">col-3</div>-->
-        <!--        </div>-->
-        <!--    </div>-->
-        <!--    <code>.row.justify-content-around</code>-->
-        <!--    <div class="row justify-content-around">-->
-        <!--        <div class="col-4">-->
-        <!--            <div class="card card-body mb-2">col-4</div>-->
-        <!--        </div>-->
-        <!--        <div class="col-4">-->
-        <!--            <div class="card card-body mb-2">col-4</div>-->
-        <!--        </div>-->
-        <!--    </div>-->
-        <!--    <code>.row.justify-content-center</code>-->
-        <!--    <div class="row justify-content-center">-->
-        <!--        <div class="col-4">-->
-        <!--            <div class="card card-body mb-2">col-6</div>-->
-        <!--        </div>-->
-        <!--    </div>-->
-        <!--    <div class="row justify-content-center">-->
-        <!--        <div class="col-2">-->
-        <!--            <div class="card card-body mb-2">col-2</div>-->
-        <!--        </div>-->
-        <!--        <div class="col-2">-->
-        <!--            <div class="card card-body mb-2">col-2</div>-->
-        <!--        </div>-->
-        <!--    </div>-->
-        <!--    <div class="row justify-content-center">-->
-        <!--        <div class="col-7">-->
-        <!--            <div class="row">-->
-        <!--                <div class="col">-->
-        <!--                    <div class="card card-body mb-2">col</div>-->
-        <!--                </div>-->
-        <!--                <div class="col">-->
-        <!--                    <div class="d-flex card card-body mb-2">center</div>-->
-        <!--                </div>-->
-        <!--                <div class="col">-->
-        <!--                    <div class="card card-body mb-2">col that is wider with content</div>-->
-        <!--                </div>-->
-        <!--            </div>-->
-        <!--        </div>-->
-        <!--    </div>-->
-        <!--    <h4 class="text-center">Flexbox with auto-margins</h4>-->
-        <!--    <code>.row</code>-->
-        <!--    <div class="row">-->
-        <!--        <div class="col-3">-->
-        <!--            <div class="card card-body mb-2">col-3</div>-->
-        <!--        </div>-->
-        <!--        <div class="col-3 mx-auto">-->
-        <!--            <div class="card card-body mb-2">col-3 <code>.mx-auto</code></div>-->
-        <!--        </div>-->
-        <!--        <div class="col-3">-->
-        <!--            <div class="card card-body mb-2">col-3</div>-->
-        <!--        </div>-->
-        <!--    </div>-->
-        <!--    <div class="row">-->
-        <!--        <div class="col-3">-->
-        <!--            <div class="card card-body mb-2">col-3 with more content</div>-->
-        <!--        </div>-->
-        <!--        <div class="col-3 mx-auto">-->
-        <!--            <div class="card card-body mb-2">col-3 <code>.mx-auto</code></div>-->
-        <!--        </div>-->
-        <!--        <div class="col-3">-->
-        <!--            <div class="card card-body mb-2">col-3</div>-->
-        <!--        </div>-->
-        <!--    </div>-->
-        <!--    <div class="row">-->
-        <!--        <div class="col-3 mr-auto">-->
-        <!--            <div class="card card-body mb-2">col-3 <code>.mr-auto</code></div>-->
-        <!--        </div>-->
-        <!--        <div class="col-3">-->
-        <!--            <div class="card card-body mb-2">col-3</div>-->
-        <!--        </div>-->
-        <!--        <div class="col-3 ml-auto">-->
-        <!--            <div class="card card-body mb-2">col-3 <code>.ml-auto</code></div>-->
-        <!--        </div>-->
-        <!--    </div>-->
-        <!--</div>-->
+    </div>
+    {{!-- <hr> --}}
+    <form action="/filter" method="POST">
+        <main role="main" class="container">
+            <div class="my-3 p-3 bg-white rounded shadow-sm ">
+                <h6 class="border-bottom border-gray pb-2 mb-0"><span
+                        style="color: rgb(255, 60, 0);">{{name}}'</span>(s)
+                    working days</h6>
+                {{#each days}}
+                <div class="media text-muted pt-3">
+                    <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32"
+                        xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
+                        role="img" aria-label="Placeholder: 32x32">
+                        <title>Placeholder</title>
+                        {{#if (green)}}
+                        <rect width="100%" height="100%" fill="#ff2700" />
+                        {{else if (orange)}}
+                        <rect width="100%" height="100%" fill="" />
+                        {{else}}
+                        <rect width="100%" height="100%" fill="#ff2700" />
+                        {{/if}}
+                    </svg>
+                    <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                        <strong class="d-block text-dark"><i class="fa fa-calendar" style="color:rgb(12, 167, 20);"></i>
+                            {{days_in_a_week}}</strong>
+                        <strong class="d-block text-dark">Waiters: <span
+                                style="color:rgb(0, 0, 0);">{{days_count}}</span></strong>
+                        <strong class="d-block text-dark">Name: <span
+                                style="color:rgb(255, 60, 0);">{{waiter_name}}</span></strong>
+                        <small class="d-block text-center mt-3">
+                            {{!-- <a href="/delete"> <button type="button" class="btn btn-light"><i class="fa fa-trash"
+                                        aria-hidden="true"></i>
+                                    Delete</button></a> --}}
+                            {{!-- <a href="/"> <button class="btn btn-success"><i class="fa fa-spinner fa-spin"></i>
+                                    Update</button></a> --}}
+
+                            <!-- Collapse buttons -->
+
+                            {{!-- <button class="btn btn-warning" name="waiters" value="{{id}}" type="submit"><i
+                                    class="fas fa-eye"></i>
+                                Waiters</button> --}}
+                        </small>
+                    </p>
+                </div>
+                {{/each}}
+
+        </main>
+    </form>
+
+    <!--        <div class="col-4 mx-auto">-->
+    <!--            <div class="card card-body mb-2">-->
+    <!--                <h6>I'm .col-4</h6>-->
+    <!--                <code>.mx-auto</code>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--        <div class="col-4 mx-auto">-->
+    <!--            <div class="card card-body mb-2">-->
+    <!--                <h6>I'm .col-4</h6>-->
+    <!--                <code>.mx-auto</code>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--        <div class="col-4 mx-auto">-->
+    <!--            <div class="card card-body mb-2">-->
+    <!--                <h6>I'm .col-4</h6>-->
+    <!--                <code>.mx-auto</code> center uneven grid cols-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <hr>-->
+    <!--    <h4 class="text-center">Flexbox utils in Bootstrap 4</h4>-->
+    <!--    <code>.row.justify-content-between</code>-->
+    <!--    <div class="row justify-content-between">-->
+    <!--        <div class="col-3">-->
+    <!--            <div class="card card-body mb-2">col-3</div>-->
+    <!--        </div>-->
+    <!--        <div class="col-3">-->
+    <!--            <div class="card card-body mb-2">col-3</div>-->
+    <!--        </div>-->
+    <!--        <div class="col-3">-->
+    <!--            <div class="card card-body mb-2">col-3</div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <code>.row.justify-content-around</code>-->
+    <!--    <div class="row justify-content-around">-->
+    <!--        <div class="col-4">-->
+    <!--            <div class="card card-body mb-2">col-4</div>-->
+    <!--        </div>-->
+    <!--        <div class="col-4">-->
+    <!--            <div class="card card-body mb-2">col-4</div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <code>.row.justify-content-center</code>-->
+    <!--    <div class="row justify-content-center">-->
+    <!--        <div class="col-4">-->
+    <!--            <div class="card card-body mb-2">col-6</div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <div class="row justify-content-center">-->
+    <!--        <div class="col-2">-->
+    <!--            <div class="card card-body mb-2">col-2</div>-->
+    <!--        </div>-->
+    <!--        <div class="col-2">-->
+    <!--            <div class="card card-body mb-2">col-2</div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <div class="row justify-content-center">-->
+    <!--        <div class="col-7">-->
+    <!--            <div class="row">-->
+    <!--                <div class="col">-->
+    <!--                    <div class="card card-body mb-2">col</div>-->
+    <!--                </div>-->
+    <!--                <div class="col">-->
+    <!--                    <div class="d-flex card card-body mb-2">center</div>-->
+    <!--                </div>-->
+    <!--                <div class="col">-->
+    <!--                    <div class="card card-body mb-2">col that is wider with content</div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <h4 class="text-center">Flexbox with auto-margins</h4>-->
+    <!--    <code>.row</code>-->
+    <!--    <div class="row">-->
+    <!--        <div class="col-3">-->
+    <!--            <div class="card card-body mb-2">col-3</div>-->
+    <!--        </div>-->
+    <!--        <div class="col-3 mx-auto">-->
+    <!--            <div class="card card-body mb-2">col-3 <code>.mx-auto</code></div>-->
+    <!--        </div>-->
+    <!--        <div class="col-3">-->
+    <!--            <div class="card card-body mb-2">col-3</div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <div class="row">-->
+    <!--        <div class="col-3">-->
+    <!--            <div class="card card-body mb-2">col-3 with more content</div>-->
+    <!--        </div>-->
+    <!--        <div class="col-3 mx-auto">-->
+    <!--            <div class="card card-body mb-2">col-3 <code>.mx-auto</code></div>-->
+    <!--        </div>-->
+    <!--        <div class="col-3">-->
+    <!--            <div class="card card-body mb-2">col-3</div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <div class="row">-->
+    <!--        <div class="col-3 mr-auto">-->
+    <!--            <div class="card card-body mb-2">col-3 <code>.mr-auto</code></div>-->
+    <!--        </div>-->
+    <!--        <div class="col-3">-->
+    <!--            <div class="card card-body mb-2">col-3</div>-->
+    <!--        </div>-->
+    <!--        <div class="col-3 ml-auto">-->
+    <!--            <div class="card card-body mb-2">col-3 <code>.ml-auto</code></div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--</div>-->
 
 </body>
 
