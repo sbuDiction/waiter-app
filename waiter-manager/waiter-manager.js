@@ -91,7 +91,6 @@ module.exports = function Waiter_manage_system(pool) {
       {days_in_a_week: "Sunday",days_count: 0,status: "#ffff00",waiters: []},
     ];
     let get_by_id = await pool.query("SELECT working_days.days_in_a_week, working_days.days_count, working_days.status, user_names.waiter_name FROM working_days INNER JOIN join_tables ON working_days.id = join_tables.days_ref INNER JOIN user_names ON user_names.id = join_tables.user_ref WHERE waiter_name = $1;", [name]);
-    console.log(get_by_id.rows);
     for (let x = 0; x < get_by_id.rows.length; x++) {
       for (var i = 0; i < days_object_list.length; i++) {
         if(get_by_id.rows[x].days_in_a_week === days_object_list[i].days_in_a_week){
@@ -107,7 +106,6 @@ module.exports = function Waiter_manage_system(pool) {
       }
     }
   }
-    console.log(days_object_list);
     
     return days_object_list;
   };

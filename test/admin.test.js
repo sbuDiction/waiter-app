@@ -45,10 +45,9 @@ describe("Admin Test", function() {
     await waiter_shift.which_day("Friday");
     await waiter_shift.which_day("Friday");
 
-    await waiter_shift.return_object_days();
 
     let waiters = await waiter_shift.admin();
-    assert.equal(waiters, 4);
+    assert.equal(waiters.length, 7);
   });
 
   after(function() {

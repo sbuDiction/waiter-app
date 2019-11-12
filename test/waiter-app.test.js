@@ -46,7 +46,7 @@ describe("Waiter log in Test", function() {
     await waiter_shift.which_day("Friday");
 
     let waiters = await waiter_shift.work("Diction");
-    assert.equal(waiters.length, 3);
+    assert.equal(waiters.length, 7);
   });
 
   after(function() {
