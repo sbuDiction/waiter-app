@@ -1,9 +1,13 @@
 module.exports = function(instance_for_waiter) {
   const index = async (req, res) => {
     let waiter_name = await instance_for_waiter.show();
+
+    await instance_for_waiter.color();
+    await instance_for_waiter.color();
+
     res.render("index", {
       name: waiter_name,
-      days: await instance_for_waiter.work(waiter_name),
+      Waiter: await instance_for_waiter.work(waiter_name),
       check_box: await instance_for_waiter.week()
     });
   };
@@ -14,9 +18,8 @@ module.exports = function(instance_for_waiter) {
 
   const add_user = async (req, res) => {
     let name = req.body.waiter;
-    console.log(name);
     let passcode = req.body.passcode;
-    console.log(passcode);
+
     await instance_for_waiter.register(name, passcode);
     res.redirect("/login");
   };
@@ -28,25 +31,57 @@ module.exports = function(instance_for_waiter) {
   const log_in = async (req, res) => {
     let name = req.body.username;
     let code = req.body.passcode;
-    console.log(name);
-    console.log(code);
+
+    if (name === "Admin") {
+      res.redirect("/admin/");
+    }
 
     await instance_for_waiter.user(name, code);
     res.redirect("/waiter/" + (await instance_for_waiter.user(name, code)));
   };
 
+  const admin = async (req, res) => {
+    await instance_for_waiter.color();
+    // const name = req.params.waiters
+    // console.log(name);
+    // await instance_for_waiter.remove(name)
+    res.render("admin", { days: await instance_for_waiter.admin() });
+  };
+
   const add_shift = async (req, res) => {
     let days = req.body.day;
     let name = req.body.waiter;
-    console.log(req.body);
+
     for (let x = 0; x < days.length; x++) {
       var element = days[x];
+
       await instance_for_waiter.add(name, element);
       await instance_for_waiter.which_day(element);
     }
-    console.log(element);
+
     res.redirect("/waiter/" + name);
   };
+
+  const build = async (req, res) => {
+    let day = req.body.day;
+    let element = req.body.element;
+    let status = req.body.status;
+
+    await instance_for_waiter.build(day, element, status);
+
+    res.redirect("/building");
+  };
+
+  const render_build = async (req, res) => {
+    res.render("build_days");
+  };
+
+  const remove = async (req,res) =>{
+    const name = req.params.this
+    console.log(name);
+    await instance_for_waiter.remove(name)
+    res.redirect('/admin')
+  }
 
   return {
     index,
@@ -55,6 +90,10 @@ module.exports = function(instance_for_waiter) {
     // display_names,
     display_login,
     add_user,
-    log_in
+    log_in,
+    build,
+    render_build,
+    admin,
+    remove
   };
 };

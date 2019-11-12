@@ -90,12 +90,13 @@ body {
   line-height: 1.5;
 }
 
-/* body {
-  background-image: url(../images/3840x2160-cool-black-solid-color-background.jpg);
+body,
+html {
+  background-image: url(../images/wood.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
-} */
+  /* background-position: center; */
+}
 
 .green {
   color: green;

@@ -11,14 +11,14 @@ const pool = new Pool({
   connectionString
 });
 
-describe("Waiter log in Test", function() {
+describe("Admin Test", function() {
   beforeEach(async function() {
     await pool.query("DELETE FROM join_tables");
     await pool.query("DELETE FROM  working_days");
     await pool.query("DELETE FROM  user_names");
   });
 
-  it("a waiter should be able to see or have access to the days they will be working when they log in", async function() {
+  it("the admin should be able to see or have access to all the waiters that will be working on each day", async function() {
     let waiter_shift = Waiter_manager(pool);
     await waiter_shift.register("admin", "admin");
     await waiter_shift.register("diction", "sbu1997");
@@ -38,15 +38,17 @@ describe("Waiter log in Test", function() {
     await waiter_shift.add("Diction", "Tuesday");
     await waiter_shift.add("Diction", "Friday");
     await waiter_shift.add("Sam", "Friday");
-    await waiter_shift.add("Sam", "Friday");
 
     //incrementing days counter method
     await waiter_shift.which_day("Monday");
     await waiter_shift.which_day("Tuesday");
     await waiter_shift.which_day("Friday");
+    await waiter_shift.which_day("Friday");
 
-    let waiters = await waiter_shift.work("Diction");
-    assert.equal(waiters.length, 3);
+    await waiter_shift.return_object_days();
+
+    let waiters = await waiter_shift.admin();
+    assert.equal(waiters, 4);
   });
 
   after(function() {

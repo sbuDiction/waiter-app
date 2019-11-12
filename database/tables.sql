@@ -2,6 +2,7 @@ create table working_days (
 id serial primary key,
 days_in_a_week text,
 element_id text,
+status text,
 days_count integer
 );
 

@@ -1,0 +1,20 @@
+language: node_js
+env:
+  - DATABASE_URL=postgresql://postgres@localhost:5432/waiters_tests
+
+node_js:
+  - "v12.10.0"
+
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'create database  waiters_tests;' -U postgres
+  - psql -U postgres -d waiters_tests -a -f database/tables.sql
+
+after_success: npm run coverage
+
+addons:
+  apt:
+    packages:
+      - postgresql-server-dev-9.2

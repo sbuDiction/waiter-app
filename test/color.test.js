@@ -14,8 +14,8 @@ const pool = new Pool({
 describe("Waiter log in Test", function() {
   beforeEach(async function() {
     await pool.query("DELETE FROM join_tables");
-    await pool.query("DELETE FROM  working_days");
     await pool.query("DELETE FROM  user_names");
+    await pool.query("DELETE FROM  working_days");
   });
 
   it("a waiter should be able to see or have access to the days they will be working when they log in", async function() {
@@ -23,30 +23,37 @@ describe("Waiter log in Test", function() {
     await waiter_shift.register("admin", "admin");
     await waiter_shift.register("diction", "sbu1997");
     await waiter_shift.register("sam", "123");
+    await waiter_shift.register("axola", "123");
 
     //add days method
-    await waiter_shift.build("monday");
-    await waiter_shift.build("tuesday");
-    await waiter_shift.build("Wednesday");
-    await waiter_shift.build("Thursday");
-    await waiter_shift.build("Friday");
-    await waiter_shift.build("saturday");
-    await waiter_shift.build("sunday");
+    await waiter_shift.build("monday", "low");
+    await waiter_shift.build("tuesday", "low");
+    await waiter_shift.build("Wednesday", "low");
+    await waiter_shift.build("Thursday", "low");
+    await waiter_shift.build("Friday", "low");
+    await waiter_shift.build("saturday", "low");
+    await waiter_shift.build("sunday", "low");
 
     //get days and waiter method
-    await waiter_shift.add("Diction", "Monday");
-    await waiter_shift.add("Diction", "Tuesday");
+    // await waiter_shift.add("Diction", "Monday");
+    // await waiter_shift.add("Diction", "Tuesday");
     await waiter_shift.add("Diction", "Friday");
-    await waiter_shift.add("Sam", "Friday");
-    await waiter_shift.add("Sam", "Friday");
+    await waiter_shift.add("Axola", "Friday");
+    // await waiter_shift.add("Sam", "Friday");
 
     //incrementing days counter method
-    await waiter_shift.which_day("Monday");
-    await waiter_shift.which_day("Tuesday");
+    // await waiter_shift.which_day("Monday");
+    // await waiter_shift.which_day("Tuesday");
+    await waiter_shift.which_day("Friday");
+    await waiter_shift.which_day("Friday");
+    await waiter_shift.which_day("Friday");
     await waiter_shift.which_day("Friday");
 
-    let waiters = await waiter_shift.work("Diction");
-    assert.equal(waiters.length, 3);
+    //color changing method
+    await waiter_shift.color();
+
+    // let waiters = await waiter_shift.work("Diction");
+    assert.equal('hello', 'hello');
   });
 
   after(function() {

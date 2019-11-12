@@ -11,20 +11,15 @@ const pool = new Pool({
   connectionString
 });
 
-describe("Waiter log in Test", function() {
+describe("Adding Days in a week Test", function() {
   beforeEach(async function() {
     await pool.query("DELETE FROM join_tables");
     await pool.query("DELETE FROM  working_days");
     await pool.query("DELETE FROM  user_names");
   });
 
-  it("a waiter should be able to see or have access to the days they will be working when they log in", async function() {
+  it("admin should be able to add working days for the waiters to choose from ", async function() {
     let waiter_shift = Waiter_manager(pool);
-    await waiter_shift.register("admin", "admin");
-    await waiter_shift.register("diction", "sbu1997");
-    await waiter_shift.register("sam", "123");
-
-    //add days method
     await waiter_shift.build("monday");
     await waiter_shift.build("tuesday");
     await waiter_shift.build("Wednesday");
@@ -33,20 +28,8 @@ describe("Waiter log in Test", function() {
     await waiter_shift.build("saturday");
     await waiter_shift.build("sunday");
 
-    //get days and waiter method
-    await waiter_shift.add("Diction", "Monday");
-    await waiter_shift.add("Diction", "Tuesday");
-    await waiter_shift.add("Diction", "Friday");
-    await waiter_shift.add("Sam", "Friday");
-    await waiter_shift.add("Sam", "Friday");
-
-    //incrementing days counter method
-    await waiter_shift.which_day("Monday");
-    await waiter_shift.which_day("Tuesday");
-    await waiter_shift.which_day("Friday");
-
-    let waiters = await waiter_shift.work("Diction");
-    assert.equal(waiters.length, 3);
+    let waiters = await waiter_shift.week();
+    assert.equal(waiters.length, 7);
   });
 
   after(function() {

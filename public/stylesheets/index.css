@@ -1,3 +1,7 @@
-body {
-    /* background-color: rgba(210, 198, 30, 0.842); */
+body,
+html {
+    background-image: url(../images/wood.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* background-position: center; */
 }
