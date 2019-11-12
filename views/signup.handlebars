@@ -1,38 +1,55 @@
-<div class="container py-5">
-  <div class="row">
-    <div class="col-md-12">
-      <h2 style="color: rgba(255, 146, 4, 0.822);" class="text-center mb-5">Welcome to waiter app </h2>
-      <div class="row">
-        <div class="col-md-6 mx-auto">
-          <div class="card border-secondary">
-            <div class="card-header">
-              <h3 class="mb-0 my-2">Sign Up</h3>
-            </div>
-            <div class="card-body">
-              <form action="/add" method="POST" class="form" role="form" autocomplete="off">
-                <div class="form-group">
-                  <label for="inputName">Name</label>
-                  <input type="text" name="waiter" class="form-control" id="inputName" placeholder="Waiter name">
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3">Password</label>
-                  <input type="password" name="passcode" class="form-control" id="inputPassword3" placeholder="password"
-                    title="At least 6 characters with letters and numbers" required="">
-                </div>
-                <div class="form-group">
-                  <button type="submit" class="btn btn-success btn-lg float-right">Register</button>
-                </div>
-              </form>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/stylesheets/shift.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 style="color: rgba(255, 146, 4, 0.822);" class="text-center mb-5">Welcome to waiter app </h2>
+        <div class="row">
+          <div class="col-md-6 mx-auto">
+            <div class="card border-secondary">
+              <div class="card-header">
+                <h3 class="mb-0 my-2">Sign Up</h3>
+              </div>
+              <div class="card-body">
+                <form action="/add" method="POST" class="form" role="form" autocomplete="off">
+                  <div class="form-group">
+                    <label for="inputName">Name</label>
+                    <input type="text" name="waiter" class="form-control" id="inputName" placeholder="Waiter name">
+                  </div>
+                  <div class="form-group">
+                    <label for="inputPassword3">Password</label>
+                    <input type="password" name="passcode" class="form-control" id="inputPassword3"
+                      placeholder="password" title="At least 6 characters with letters and numbers" required="">
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-success btn-lg float-right">Register</button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <!--/row-->
+        <!--/row-->
 
+      </div>
+      <!--/col-->
     </div>
-    <!--/col-->
+    <!--/row-->
+    <a href="/login" class="justify-content-between"><span style="color: rgb(0, 38, 255);">Already have account? sign
+        in</span></a>
   </div>
-  <!--/row-->
-  <a  href="/login" class="justify-content-between"><span style="color: rgb(0, 38, 255);">Already have account? sign in</span></a>
-</div>
+
+</body>
+
+</html>
 <!--/container-->
