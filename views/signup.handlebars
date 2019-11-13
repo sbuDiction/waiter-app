@@ -21,10 +21,12 @@
                 <h3 class="mb-0 my-2">Sign Up</h3>
               </div>
               <div class="card-body">
-                <form action="/add" method="POST" class="form" role="form" autocomplete="off">
+                <form action="/add" method="post" class="form" role="form" autocomplete="off">
                   <div class="form-group">
                     <label for="inputName">Name</label>
-                    <input type="text" name="waiter" class="form-control" id="inputName" placeholder="Waiter name">
+                    <input
+                      onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1).toLowerCase()"
+                      type="text" name="waiter" class="form-control" id="inputName" placeholder="Waiter name">
                   </div>
                   <div class="form-group">
                     <label for="inputPassword3">Password</label>

@@ -10,11 +10,9 @@
 </head>
 
 <body>
-    {{!-- <span class="input-group-text" id="addon-wrapping"><img src="https://img.icons8.com/office/24/000000/waiter.png">
-    </span> --}}
-
-
     <h1 style="color: rgba(255, 146, 4, 0.822);" class="text-center mt-5">Waiter</h1>
+    <h5 style="color: rgb(255, 4, 4);" class="text-center mt-5">{{messages.info}}</h5>
+    <h5 style="color: rgb(0, 255, 0);" class="text-center mt-5">{{messages.yes}}</h5>
     <div class="container pt-3">
         <div class="row justify-content-sm-center">
             <div class="col-sm-10 col-md-6">
@@ -22,29 +20,22 @@
                     <div class="card-header">Sign in to continue</div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-4 text-center">
-                                <img src="https://img.icons8.com/office/24/000000/waiter.png">
+                            <div class="col-md-4 text-center"><img src="https://img.icons8.com/office/24/000000/waiter.png">
                                 <h4 class="text-center">Waiter app</h4>
-                            </div>
-                            <div class="col-md-8">
-                                <form action="/welcome" method="POST" class="form-signin">
-                                    <input type="text" class="form-control mb-2" name="username" placeholder="Waiter name" required autofocus>
+                                    </div>
+                                    <div class="col-md-8">
+                                    <form action="/welcome" method="POST" class="form-signin">
+                                    <input type="text" class="form-control mb-2" name="username" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1).toLowerCase()" placeholder="Waiter name" required autofocus>
                                     <input type="password" class="form-control mb-2" name="passcode" placeholder="Password" required>
                                     <button class="btn btn-lg btn-primary btn-block mb-1" type="submit">Sign in</button>
-                                    {{!-- <label class="checkbox float-left">
-                                        <input type="checkbox" value="remember-me">
-                                        Remember me
-                                    </label> --}}
                                     <a href="/" class="float-right">Not yet registered?</a>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div>
     </div>
 </body>
-
 </html>

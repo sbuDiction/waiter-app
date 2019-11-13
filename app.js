@@ -47,13 +47,11 @@ const Function = require("./waiter-manager/waiter-manager");
 const Helpers = require("./custom-helpers");
 const instance_for_waiter = Function(pool);
 const instance_for_routes = Routes(instance_for_waiter);
-// const helpers = Helpers(instance_for_waiter);
 
 const handlebarSetup = exphbs({
   partialsDir: "./views/partials",
   viewPath: "./views",
   layoutsDir: "./views/layouts"
-  // helpers
 });
 
 app.engine("handlebars", handlebarSetup);
@@ -62,16 +60,17 @@ app.set("view engine", "handlebars");
 app.use(flash());
 
 app.get("/", instance_for_routes.display_sigup);
+
 app.post("/add", instance_for_routes.add_user);
 app.get("/login", instance_for_routes.display_login);
 app.post("/welcome", instance_for_routes.log_in);
 app.get("/waiter/:username", instance_for_routes.index);
 app.get("/admin", instance_for_routes.admin);
 app.post("/add_shift", instance_for_routes.add_shift);
-
 app.post("/build", instance_for_routes.build);
 app.get("/building", instance_for_routes.render_build);
 app.get('/remove/:name', instance_for_routes.remove)
+app.get('/remove', instance_for_routes.remove_all)
 
 app.listen(PORT, () => {
   console.log("App started at port:", PORT);
