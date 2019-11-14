@@ -104,19 +104,6 @@ module.exports = function Waiter_manage_system(pool) {
     return days_object_list;
   };
 
-  const change_color = async () => {
-    let get_by_count = await pool.query("SELECT * FROM working_days");
-    for (const iterator of get_by_count.rows) {
-      if (iterator.days_count) {
-        await pool.query("UPDATE working_days SET status = $1 WHERE days_count = $2", ["#008000", 3]);
-      }if(iterator.days_count){
-        await pool.query('UPDATE working_days SET status = $1 WHERE days_count > $2', ["#ff0000", 3])
-      }if(iterator.days_count){
-        await pool.query('UPDATE working_days SET status = $1 WHERE days_count < $2', ["#ffff00", 3])
-      }
-    }
-  };
-
   const display_registered_waiters = async () => {
     let waiters = await pool.query("SELECT * FROM user_names");
     return waiters.rows;
@@ -197,7 +184,6 @@ module.exports = function Waiter_manage_system(pool) {
     user: display_current,
     show: show_user,
     work: display_workers,
-    color: change_color,
     display_registered_waiters,
     admin: admin_access,
     remove: remove_waiter,

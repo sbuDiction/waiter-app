@@ -44,13 +44,13 @@ describe("Waiter log in Test", function() {
     //incrementing days counter method
     // await waiter_shift.which_day("Monday");
     // await waiter_shift.which_day("Tuesday");
-    await waiter_shift.which_day("Friday");
-    await waiter_shift.which_day("Friday");
-    await waiter_shift.which_day("Friday");
-    await waiter_shift.which_day("Friday");
+    // await waiter_shift.which_day("Friday");
+    // await waiter_shift.which_day("Friday");
+    // await waiter_shift.which_day("Friday");
+    // await waiter_shift.which_day("Friday");
 
     //color changing method
-    await waiter_shift.color();
+    // await waiter_shift.color();
 
     // let waiters = await waiter_shift.work("Diction");
     assert.equal('hello', 'hello');

@@ -38,12 +38,12 @@ describe("Waiter log in Test", function() {
     await waiter_shift.add("Diction", "Tuesday");
     await waiter_shift.add("Diction", "Friday");
     await waiter_shift.add("Sam", "Friday");
-    await waiter_shift.add("Sam", "Friday");
+    await waiter_shift.add("Sam", "Friday");  
 
     //incrementing days counter method
-    await waiter_shift.which_day("Monday");
-    await waiter_shift.which_day("Tuesday");
-    await waiter_shift.which_day("Friday");
+    // await waiter_shift.which_day("Monday");
+    // await waiter_shift.which_day("Tuesday");
+    // await waiter_shift.which_day("Friday");
 
     let waiters = await waiter_shift.work("Diction");
     assert.equal(waiters.length, 7);

@@ -37,9 +37,9 @@ describe("Add shift Test", function() {
     await waiter_shift.add("Diction", "Friday");
 
     //incrementing days counter method
-    await waiter_shift.which_day("Monday");
-    await waiter_shift.which_day("Tuesday");
-    await waiter_shift.which_day("Friday");
+    // await waiter_shift.which_day("Monday");
+    // await waiter_shift.which_day("Tuesday");
+    // await waiter_shift.which_day("Friday");
 
     let waiters = await waiter_shift.waiters();
     assert.equal(waiters.length, 3);
@@ -66,9 +66,9 @@ describe("Add shift Test", function() {
     await waiter_shift.add("Sam", "Friday");
 
     //incrementing days counter method
-    await waiter_shift.which_day("Monday");
-    await waiter_shift.which_day("Tuesday");
-    await waiter_shift.which_day("Friday");
+    // await waiter_shift.which_day("Monday");
+    // await waiter_shift.which_day("Tuesday");
+    // await waiter_shift.which_day("Friday");
 
     let counter = await waiter_shift.counter("Friday");
     assert.equal(counter, 2);

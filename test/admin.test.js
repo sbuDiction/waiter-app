@@ -26,6 +26,10 @@ describe("Admin Test", function() {
 
     //add days method
     await waiter_shift.build("monday");
+
+
+
+
     await waiter_shift.build("tuesday");
     await waiter_shift.build("Wednesday");
     await waiter_shift.build("Thursday");
@@ -40,10 +44,6 @@ describe("Admin Test", function() {
     await waiter_shift.add("Sam", "Friday");
 
     //incrementing days counter method
-    await waiter_shift.which_day("Monday");
-    await waiter_shift.which_day("Tuesday");
-    await waiter_shift.which_day("Friday");
-    await waiter_shift.which_day("Friday");
 
 
     let waiters = await waiter_shift.admin();
