@@ -12,12 +12,12 @@ module.exports = function Waiter_manage_system(pool) {
         var waiter_name = get_by_name.rows[i].id;
       }
     }
+    
     let check_duplicate = await pool.query("SELECT * FROM join_tables WHERE user_ref = $1 AND days_ref = $2", [waiter_name, day_selected]);
     if (check_duplicate.rows.length !== 0) {
-      return true;
-    } else {
-      await pool.query("INSERT INTO join_tables (user_ref,days_ref) VALUES ($1,$2)", [waiter_name, day_selected]);
+      await pool.query('DELETE FROM join_tables WHERE user_ref = $1',[waiter_name])
     }
+      await pool.query("INSERT INTO join_tables (user_ref,days_ref) VALUES ($1,$2)", [waiter_name, day_selected]);
   };
 
 
@@ -190,6 +190,6 @@ module.exports = function Waiter_manage_system(pool) {
     return_checked,
     msg: display_message,
     yes: display_success,
-    DELETE: remove_all_waiters
+    DELETE: remove_all_waiters,
   };
 };

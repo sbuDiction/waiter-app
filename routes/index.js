@@ -1,6 +1,5 @@
 module.exports = function(instance_for_waiter) {
   const index = async (req, res) => {
-
     let waiter_name = await instance_for_waiter.show();
 
     res.render("index", {
@@ -10,27 +9,23 @@ module.exports = function(instance_for_waiter) {
     });
   };
 
-
   const display_sigup = async (req, res) => {
     res.render("signup");
   };
-
 
   const add_user = async (req, res) => {
     let name = req.body.waiter;
     let passcode = req.body.passcode;
     await instance_for_waiter.register(name, passcode);
     res.redirect("/login");
-    req.flash('yes', instance_for_waiter.yes())
+    req.flash("yes", instance_for_waiter.yes());
   };
-
 
   const display_login = async (req, res) => {
-    req.flash('info', instance_for_waiter.msg())
-    
+    req.flash("info", instance_for_waiter.msg());
+
     res.render("login");
   };
-
 
   const log_in = async (req, res) => {
     let name = req.body.username;
@@ -44,15 +39,14 @@ module.exports = function(instance_for_waiter) {
     res.redirect("/waiter/" + (await instance_for_waiter.user(name, code)));
   };
 
-
   const admin = async (req, res) => {
     res.render("admin", { days: await instance_for_waiter.admin() });
   };
 
-
   const add_shift = async (req, res) => {
     let days = req.body.day;
     let name = req.body.waiter;
+    console.log(days);
 
     for (let x = 0; x < days.length; x++) {
       var element = days[x];
@@ -61,6 +55,7 @@ module.exports = function(instance_for_waiter) {
 
     res.redirect("/waiter/" + name);
   };
+
 
 
   const build = async (req, res) => {
@@ -72,22 +67,20 @@ module.exports = function(instance_for_waiter) {
     res.redirect("/building");
   };
 
-
   const render_build = async (req, res) => {
     res.render("build_days");
   };
 
+  const remove = async (req, res) => {
+    const name = req.params.name;
+    await instance_for_waiter.remove(name);
+    res.redirect("/admin");
+  };
 
-  const remove = async (req,res) =>{
-    const name = req.params.name
-    await instance_for_waiter.remove(name)
-    res.redirect('/admin')  
-  }
-
-  const remove_all = async (req,res) => {
-   await instance_for_waiter.DELETE()
-   res.redirect('/admin')
-  }
+  const remove_all = async (req, res) => {
+    await instance_for_waiter.DELETE();
+    res.redirect("/admin");
+  };
 
   return {
     index,
@@ -100,6 +93,6 @@ module.exports = function(instance_for_waiter) {
     render_build,
     admin,
     remove,
-    remove_all
+    remove_all,
   };
 };

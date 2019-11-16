@@ -61,8 +61,8 @@
                     <div class="justify-content-center text-center">
                         {{#check_box}}
                         <div class="custom-control custom-checkbox custom-control-inline ">
-                            <input {{state}} type="checkbox" name="day" value="{{days_in_a_week}}" class="custom-control-input"
-                                id="{{element_id}}">
+                            <input {{state}} type="checkbox" name="day" value="{{days_in_a_week}}"
+                                class="custom-control-input" id="{{element_id}}">
                             <label style="color: rgba(255, 146, 4, 0.822);" class="custom-control-label"
                                 for="{{element_id}}">{{days_in_a_week}}</label>
                         </div>
@@ -73,13 +73,15 @@
             <hr>
             <div class="row">
                 <div class="col-4 mx-auto text-center">
-                    <button type="submit" class="btn btn-dark text-center">Update shift</button>
-                </div>
-                <div class="col-4 mx-auto text-center">
-                    <a href="/login"><button type="button" class="btn btn-success text-center">Log out</button></a>
+                    <button type="submit" class="btn btn-info text-center">update_shift</button>
                 </div>
         </form>
-        {{error.message}}
+
+        <div class="col-4 mx-auto text-center">
+            <a href="/login"><button type="button" class="btn btn-warning text-center">Log out</button></a>
+        </div>
+    </div>
+    {{error.message}}
     </div>
     <form action="/filter" method="POST">
         <main role="main" class="container">

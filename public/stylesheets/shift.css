@@ -101,3 +101,7 @@ html {
 .green {
   color: green;
 }
+
+.hiden {
+  display: none;
+}
