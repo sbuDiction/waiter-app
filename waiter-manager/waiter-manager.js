@@ -4,22 +4,18 @@ module.exports = function Waiter_manage_system(pool) {
   let success = ''
 
   const add_shift = async (name, day) => {
-    let get_by_day = await pool.query("SELECT * FROM working_days WHERE days_in_a_week = $1;", [day]);
+    const days_array = Array.isArray(day) ? day : [day];
     let get_by_name = await pool.query("SELECT * FROM user_names WHERE waiter_name = $1", [name]);
-    for (let x = 0; x < get_by_day.rows.length; x++) {
-      var day_selected = get_by_day.rows[x].id;
-      for (let i = 0; i < get_by_name.rows.length; i++) {
-        var waiter_name = get_by_name.rows[i].id;
+    let waiter_id = get_by_name.rows[0].id
+      await pool.query('DELETE FROM join_tables WHERE user_ref = $1;',[waiter_id]);
+    
+    for (var x = 0; x < days_array.length; x++) {
+      var get_by_day = await pool.query("SELECT * FROM working_days WHERE days_in_a_week = $1", [days_array[x]]);
+      if(get_by_day.rows.length !== 0){
+        await pool.query("INSERT INTO join_tables (user_ref, days_ref) VALUES ($1, $2);", [waiter_id, get_by_day.rows[0].id]);
       }
     }
-    
-    let check_duplicate = await pool.query("SELECT * FROM join_tables WHERE user_ref = $1 AND days_ref = $2", [waiter_name, day_selected]);
-    if (check_duplicate.rows.length !== 0) {
-      await pool.query('DELETE FROM join_tables WHERE user_ref = $1',[waiter_name])
-    }
-      await pool.query("INSERT INTO join_tables (user_ref,days_ref) VALUES ($1,$2)", [waiter_name, day_selected]);
   };
-
 
   const display_counter = async days_id => {
     let days = await pool.query("SELECT * FROM working_days WHERE days_in_a_week = $1", [days_id]);
@@ -30,7 +26,7 @@ module.exports = function Waiter_manage_system(pool) {
 
 
   const display_waiters = async () => {
-    let waiters = await pool.query("SELECT * FROM join_tables");
+    let waiters = await pool.query("SELECT * FROM user_names");
     return waiters.rows;
   };
 
@@ -55,7 +51,6 @@ module.exports = function Waiter_manage_system(pool) {
     let passcode = password.toUpperCase();
     let signup = await pool.query("SELECT * FROM user_names WHERE waiter_name = $1 AND passcode = $2", [waiter_name, passcode]);
     if (signup.rows.length !== 0) {
-
       error = 'You already have an account try logging in please'
       return true;
     }
@@ -63,16 +58,24 @@ module.exports = function Waiter_manage_system(pool) {
     success = 'Account successfully created now you can log in'
   };
 
+
   const display_current = async (name, passcode) => {
+    error = ''
     let name_list = await pool.query("SELECT * FROM user_names WHERE waiter_name = $1 AND passcode = $2",[name, passcode]);
-    if (name === name_list.rows[0].waiter_name && passcode === name_list.rows[0].passcode) {
-      current_user = name_list.rows[0].waiter_name;
+    if(name_list.rowCount === 1) {
+
+      if (name === name_list.rows[0].waiter_name && passcode === name_list.rows[0].passcode) {
+      return current_user = name_list.rows[0].waiter_name;
+      } 
     }
     return name_list.rows[0].waiter_name;
   };
 
 
-  const show_user = async () => current_user;
+  const show_user = async () => {
+    error = ''
+    return current_user;
+  } 
 
 
   const display_workers = async name => {
@@ -85,6 +88,7 @@ module.exports = function Waiter_manage_system(pool) {
       {days_in_a_week: "Saturday",days_count: 0,status: "#ffff00",waiters: []},
       {days_in_a_week: "Sunday",days_count: 0,status: "#ffff00",waiters: []},
     ];
+
     let get_by_id = await pool.query("SELECT working_days.days_in_a_week, working_days.days_count, working_days.status, user_names.waiter_name FROM working_days INNER JOIN join_tables ON working_days.id = join_tables.days_ref INNER JOIN user_names ON user_names.id = join_tables.user_ref WHERE waiter_name = $1;", [name]);
     for (let x = 0; x < get_by_id.rows.length; x++) {
       for (var i = 0; i < days_object_list.length; i++) {
@@ -102,7 +106,7 @@ module.exports = function Waiter_manage_system(pool) {
     }
   }
     return days_object_list;
-  };
+};
 
   const display_registered_waiters = async () => {
     let waiters = await pool.query("SELECT * FROM user_names");
@@ -137,7 +141,7 @@ module.exports = function Waiter_manage_system(pool) {
       }
     }
     return days_object_list;
-  };
+};
 
   const remove_waiter = async (name) => {
     let only_one_waiter = await pool.query('DELETE FROM user_names WHERE waiter_name = $1', [name])
@@ -159,6 +163,7 @@ module.exports = function Waiter_manage_system(pool) {
       {days_in_a_week: "Saturday",element_id: "#defaultInline6",state: 'null'},
       {days_in_a_week: "Sunday",element_id: "#defaultInline7",state: 'null'},
     ];
+
     let which_box = await pool.query('SELECT working_days.days_in_a_week, working_days.days_count, working_days.status, user_names.waiter_name FROM working_days INNER JOIN join_tables ON working_days.id = join_tables.days_ref INNER JOIN user_names ON user_names.id = join_tables.user_ref WHERE waiter_name = $1;', [name])
     for (let x = 0; x < which_box.rows.length; x++) {
       for (let i = 0; i < days_object_list.length; i++) {
@@ -168,7 +173,7 @@ module.exports = function Waiter_manage_system(pool) {
       }
     }
     return days_object_list
-  }
+}
 
   const display_message = () => error
 

@@ -17,9 +17,7 @@ if (process.env.DATABASE_URL && !local) {
   useSSL = true;
 }
 
-const connectionString =
-  process.env.DATABASE_URL ||
-  "postgresql://diction:19970823@localhost:5432/waiters";
+const connectionString = process.env.DATABASE_URL || "postgresql://diction:19970823@localhost:5432/waiters";
 
 const pool = new Pool({
   connectionString,
@@ -59,7 +57,7 @@ app.set("view engine", "handlebars");
 
 app.use(flash());
 
-app.get("/", instance_for_routes.display_sigup);
+app.get("/", instance_for_routes.display_login);
 
 app.post("/add", instance_for_routes.add_user);
 app.get("/login", instance_for_routes.display_login);
@@ -69,8 +67,8 @@ app.get("/admin", instance_for_routes.admin);
 app.post("/add_shift", instance_for_routes.add_shift);
 app.post("/build", instance_for_routes.build);
 app.get("/building", instance_for_routes.render_build);
-app.get('/remove/:name', instance_for_routes.remove)
-app.get('/remove', instance_for_routes.remove_all)
+app.get("/remove/:name", instance_for_routes.remove);
+app.get("/remove", instance_for_routes.remove_all);
 
 app.listen(PORT, () => {
   console.log("App started at port:", PORT);

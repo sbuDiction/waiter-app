@@ -23,20 +23,27 @@ module.exports = function(instance_for_waiter) {
 
   const display_login = async (req, res) => {
     req.flash("info", instance_for_waiter.msg());
-
+    req.flash("yes", instance_for_waiter.yes());
     res.render("login");
   };
 
   const log_in = async (req, res) => {
     let name = req.body.username;
     let code = req.body.passcode;
+    let names_array = await instance_for_waiter.waiters();
 
     if (name === "Admin") {
       res.redirect("/admin/");
     }
-
-    await instance_for_waiter.user(name, code);
-    res.redirect("/waiter/" + (await instance_for_waiter.user(name, code)));
+    for (let x = 0; x < names_array.length; x++) {
+      var waiter = names_array[x].waiter_name;
+      var passcode = names_array[x].passcode;
+      if (name === waiter && code === passcode) {
+        res.redirect("/waiter/" + (await instance_for_waiter.user(name, code)));
+      }
+    }
+    req.flash("yes", await instance_for_waiter.msg());
+    return res.redirect("login");
   };
 
   const admin = async (req, res) => {
@@ -46,17 +53,11 @@ module.exports = function(instance_for_waiter) {
   const add_shift = async (req, res) => {
     let days = req.body.day;
     let name = req.body.waiter;
-    console.log(days);
-
-    for (let x = 0; x < days.length; x++) {
-      var element = days[x];
-      await instance_for_waiter.add(name, element);
-    }
+    
+    await instance_for_waiter.add(name, days);
 
     res.redirect("/waiter/" + name);
   };
-
-
 
   const build = async (req, res) => {
     let day = req.body.day;
@@ -73,8 +74,9 @@ module.exports = function(instance_for_waiter) {
 
   const remove = async (req, res) => {
     const name = req.params.name;
-    await instance_for_waiter.remove(name);
-    res.redirect("/admin");
+  
+    await instance_for_waiter.work(name);
+    res.redirect("/waiter/" + name);
   };
 
   const remove_all = async (req, res) => {
@@ -93,6 +95,6 @@ module.exports = function(instance_for_waiter) {
     render_build,
     admin,
     remove,
-    remove_all,
+    remove_all
   };
 };

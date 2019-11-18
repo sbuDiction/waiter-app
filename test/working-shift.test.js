@@ -42,7 +42,7 @@ describe("Add shift Test", function() {
     // await waiter_shift.which_day("Friday");
 
     let waiters = await waiter_shift.waiters();
-    assert.equal(waiters.length, 3);
+    assert.equal(waiters.length, 1);
   });
   it("a waiter should be able to see the count of how many waiters will be working on that a specific day", async function() {
     let waiter_shift = Waiter_manager(pool);
