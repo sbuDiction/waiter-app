@@ -60,7 +60,7 @@ app.use(flash());
 app.get("/", instance_for_routes.display_login);
 
 app.post("/add", instance_for_routes.add_user);
-app.get("/login", instance_for_routes.display_login);
+app.get("/signup", instance_for_routes.display_sigup);
 app.post("/welcome", instance_for_routes.log_in);
 app.get("/waiter/:username", instance_for_routes.index);
 app.get("/admin", instance_for_routes.admin);
@@ -69,6 +69,7 @@ app.post("/build", instance_for_routes.build);
 app.get("/building", instance_for_routes.render_build);
 app.get("/remove/:name", instance_for_routes.remove);
 app.get("/remove", instance_for_routes.remove_all);
+app.get("/edit_shifts_for/:username", instance_for_routes.render_waiter_for_admin)
 
 app.listen(PORT, () => {
   console.log("App started at port:", PORT);

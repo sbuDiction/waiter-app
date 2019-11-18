@@ -59,12 +59,12 @@ module.exports = function Waiter_manage_system(pool) {
   };
 
 
-  const display_current = async (name, passcode) => {
+  const display_current = async (name) => {
     error = ''
-    let name_list = await pool.query("SELECT * FROM user_names WHERE waiter_name = $1 AND passcode = $2",[name, passcode]);
+    let name_list = await pool.query("SELECT * FROM user_names WHERE waiter_name = $1",[name]);
     if(name_list.rowCount === 1) {
 
-      if (name === name_list.rows[0].waiter_name && passcode === name_list.rows[0].passcode) {
+      if (name === name_list.rows[0].waiter_name) {
       return current_user = name_list.rows[0].waiter_name;
       } 
     }

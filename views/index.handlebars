@@ -37,8 +37,16 @@
     <div class="container bg-faded">
         <h1 style="color: rgba(255, 146, 4, 0.822);" class="text-center">Welcome waiter <span
                 style="color: rgb(255, 60, 0);">{{name}}</span></h1>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Note!</strong> You can only see the days you are Subscribed to as waiter you cannot see other
+            waiters names but yours.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
         <h5 style="color: rgb(255, 4, 4);" class="text-center mt-5">{{messages.info}}</h5>
         <h5 style="color: rgb(0, 255, 0);" class="text-center mt-5">{{messages.success}}</h5>
+
         <div class="row">
         </div>
         <hr>
@@ -70,18 +78,24 @@
                                 for="{{element_id}}">{{days_in_a_week}}</label>
                         </div>
                         {{/check_box}}
+                        <i style="color: rgb(251, 255, 4);" class="fas fa-square col-4 mx-auto text-center"><span
+                                style="color: crimson;">Shift available</span> </i>
+                        <i style="color: rgb(12, 255, 4);" class="fas fa-square col-4 mx-auto text-center"><span
+                                style="color: crimson;">Shift full</span></i>
+                        <i style="color: rgb(255, 4, 4);" class="fas fa-square col-4 mx-auto text-center"><span
+                                style="color: crimson;">Over subscribed</span></i>
                     </div>
                 </div>
             </div>
             <hr>
             <div class="row">
                 <div class="col-4 mx-auto text-center">
-                    <button type="submit" class="btn btn-info text-center">update_shift</button>
+                    <button type="submit" class="btn btn-info text-center">Update shift</button>
                 </div>
         </form>
 
         <div class="col-4 mx-auto text-center">
-            <a href="/login"><button type="button" class="btn btn-warning text-center">Log out</button></a>
+            <a href="/"><button type="button" class="btn btn-warning text-center">Log out</button></a>
         </div>
     </div>
     {{error.message}}
@@ -100,7 +114,7 @@
                         <rect class="green" width="100%" height="100%" fill="{{{status}}}" />
                     </svg>
                     <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                        <strong style="color: rgba(255, 146, 4, 0.822);" class="d-block"><i class="fa fa-calendar"></i>
+                        <strong style="color: rgba(4, 255, 17, 0.822);" class="d-block"><i class="fa fa-calendar"></i>
                             {{days_in_a_week}}</strong>
                         <strong style="color: rgba(255, 146, 4, 0.822);" class="d-block">Waiters: <span
                                 style="color: rgba(255, 146, 4, 0.822);">{{days_count}}</span></strong>
