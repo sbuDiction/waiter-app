@@ -92,9 +92,9 @@ module.exports = function(instance_for_waiter) {
     let name = req.body.waiter;
 
     await instance_for_waiter.add(name, days);
-    
+
     req.flash("success", "Shift has been updated for" + " " + name);
-    res.redirect('/admin');
+    res.redirect("/admin");
   };
 
   const remove_all = async (req, res) => {
