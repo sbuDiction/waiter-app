@@ -53,60 +53,63 @@
             <div class="row">
                 <div class="col-12">
                     <div class="justify-content-center text-center">
-                        <div class="custom-control custom-checkbox custom-control-inline ">
-                            <i style="color: rgb(251, 255, 4);" class="fas fa-square col-4 mx-auto text-center"><span
-                                    style="color: crimson;">Safe</span> </i>
-                            <i style="color: rgb(12, 255, 4);" class="fas fa-square col-4 mx-auto text-center"><span
-                                    style="color: crimson;">Full</span></i>
-                            <i style="color: rgb(255, 4, 4);" class="fas fa-square col-4 mx-auto text-center"><span
-                                    style="color: crimson;">Max</span></i>
+                        <div class="control-inline ">
+                            <i style="color: rgb(251, 255, 4);" class="fas fa-square col-4  text-center"><span
+                                    style="color: crimson;font-family:sans-serif"> Not enough</span></i>
+                            <i style="color: rgb(12, 255, 4);" class="fas fa-square col-4  text-center"><span
+                                    style="color: crimson;font-family:sans-serif"> Enough</span></i>
+                            <i style="color: rgb(255, 4, 4);" class="fas fa-square col-4  text-center"><span
+                                    style="color: crimson;font-family:sans-serif"> Over subscribed</span></i>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <i style="color: rgb(4, 255, 17, 0.822644);" class="fas fa-edit col-4 mx-auto text-center"><span
-                        style="color:rgba(255, 146, 4, 0.822) ;">Edit shifts for waiters <small
-                            style="color: crimson;">(Click the name to edit)</small></span> </i>
+                        style="color:rgba(255, 146, 4, 0.822);font-family:sans-serif"> Edit shifts for waiters <small
+                            style="color: crimson;">(Click the icon to edit)</small></span> </i>
         </form>
     </div>
     </div>
     <form action="/filter" method="POST">
         <main role="main" class="container">
             <div class="my-3 p-3 rounded shadow-sm ">
-                <a href="/remove"
-                    onclick="return confirm('Are you sure you want to remove all the waiter in the database?')"><button
-                        type="button" class="btn btn-light text-center"><i class="fa fa-trash"
-                            aria-hidden="true"></i>Remove waiters</button></a>
 
                 <h6 style="color: rgba(255, 146, 4, 0.822);" class="border-bottom border-gray pb-2 mb-0">Waiters working
                     days</h6>
-                {{#each days}}
-                <div class="media text-muted pt-3">
-                    <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32"
-                        xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-                        role="img" aria-label="Placeholder: 32x32">
-                        <title>Placeholder</title>
-                        <rect class="green" width="100%" height="100%" fill="{{{status}}}" />
-                    </svg>
-                    <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                        <strong style="color: rgba(4, 255, 17, 0.822);" class="d-block"> <i
-                                class="fa fa-calendar"></i>{{days_in_a_week}}</strong>
-                        <strong style="color: rgba(255, 146, 4, 0.822);" class="d-block">Waiters: <span
-                                style="color: rgba(255, 146, 4, 0.822);">{{days_count}}</span></strong>
-                        {{#each waiters}}
-                        <strong style="color: rgba(255, 146, 4, 0.822);" class="d-block">Name: <a
-                                href="/remove/{{this}}"><span> {{this}} <i style="color: rgba(4, 255, 17, 0.822644);"
-                                        class="fas fa-edit"></i></span></a></strong>
-                        {{/each}}
-                        <small class="d-block text-center mt-3">
-                        </small>
-                    </p>
+                <div class="row">
+                    {{#each days}}
+                    <div class="col-sm">
+                        <div class="media text-muted pt-3">
+                            <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32"
+                                xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
+                                focusable="false" role="img" aria-label="Placeholder: 32x32">
+                                <title>Placeholder</title>
+                                <rect class="green" width="100%" height="100%" fill="{{{status}}}" />
+                            </svg>
+                            <p class="media-body pb-3 mb-0 small lh-125">
+                                <strong style=" color: rgba(4, 255, 17, 0.822);" class="d-block"> <i
+                                        class="fa fa-calendar"></i>{{days_in_a_week}}</strong>
+                                <strong style="color: rgba(255, 146, 4, 0.822);" class="d-block">Waiters: <span
+                                        style="color: rgba(255, 146, 4, 0.822);">{{days_count}}</span></strong>
+                                {{#each waiters}}
+                                <strong style="color: rgba(255, 146, 4, 0.822);" class="d-block"><a
+                                        href="/remove/{{this}}"><span> <i style="color: rgba(4, 255, 17, 0.822644);"
+                                                class="fas fa-edit"></i></span></a> {{this}}</strong>
+                                {{/each}}
+                            </p>
+                        </div>
+                    </div>
+                    {{/each}}
                 </div>
-                {{/each}}
+                <p style="color: rgba(255, 146, 4, 0.822);" class="border-bottom border-gray pb-2 mb-0"></p>
         </main>
         <div class="col-4 mx-auto text-center">
-            <a href="/"><button type="button" class="btn btn-warning text-center">Log out</button></a>
+            <a href="/"><button type="button" class="btn-warning btn-sm">Log out</button></a>
+            <a href="/remove"
+                onclick="return confirm('Are you sure you want to remove all the waiter in the database?')"><button
+                    type="button" class="btn btn-danger text-center btn-sm "><i class="fa fa-trash"
+                        aria-hidden="true"></i>Remove waiters</button></a>
         </div>
     </form>
 </body>

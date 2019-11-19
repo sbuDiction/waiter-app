@@ -37,13 +37,6 @@
     <div class="container bg-faded">
         <h1 style="color: rgba(255, 146, 4, 0.822);" class="text-center">Welcome waiter <span
                 style="color: rgb(255, 60, 0);">{{name}}</span></h1>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Note!</strong> You can only see the days you are Subscribed to as waiter you cannot see other
-            waiters names but yours.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
         <h5 style="color: rgb(255, 4, 4);" class="text-center mt-5">{{messages.info}}</h5>
         <h5 style="color: rgb(0, 255, 0);" class="text-center mt-5">{{messages.success}}</h5>
 
@@ -66,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            {{!-- <hr> --}}
+            <hr>
             <div class="row">
                 <div class="col-12">
                     <div class="justify-content-center text-center">
@@ -78,12 +71,12 @@
                                 for="{{element_id}}">{{days_in_a_week}}</label>
                         </div>
                         {{/check_box}}
-                        <i style="color: rgb(251, 255, 4);" class="fas fa-square col-4 mx-auto text-center"><span
-                                style="color: crimson;">Shift available</span> </i>
+                        {{!-- <i style="color: rgb(251, 255, 4);" class="fas fa-square col-4 mx-auto text-center"><span
+                                style="color: rgba(72, 255, 0, 0.671);font-family:sans-serif"> Not enough</span> </i>
                         <i style="color: rgb(12, 255, 4);" class="fas fa-square col-4 mx-auto text-center"><span
-                                style="color: crimson;">Shift full</span></i>
+                                style="color: rgba(72, 255, 0, 0.671);font-family:sans-serif"> Enough</span></i>
                         <i style="color: rgb(255, 4, 4);" class="fas fa-square col-4 mx-auto text-center"><span
-                                style="color: crimson;">Over subscribed</span></i>
+                                style="color: rgba(72, 255, 0, 0.671);font-family:sans-serif"> Over subscribed</span></i> --}}
                     </div>
                 </div>
             </div>
@@ -100,12 +93,12 @@
     </div>
     {{error.message}}
     </div>
-    <form action="/filter" method="POST">
-        <main role="main" class="container">
-            <div class="my-3 p-3  rounded shadow-sm ">
-                <h6 style="color: rgba(255, 146, 4, 0.822);" class="border-bottom border-gray pb-2 mb-0"><span
-                        style="color: rgb(255, 60, 0);">{{name}}'</span>(s)working shifts</h6>
-                {{#each Waiter}}
+    {{!-- <form action="/filter" method="POST"> --}}
+    {{!-- <main role="main" class="container"> --}}
+    {{!-- <div class="my-3 p-3  rounded shadow-sm "> --}}
+    {{!-- <h6 style="color: rgba(255, 146, 4, 0.822);" class="border-bottom border-gray pb-2 mb-0"><span --}}
+    {{!-- style="color: rgb(255, 60, 0);">{{name}}'</span>(s)working shifts</h6> --}}
+    {{!-- {{#each Waiter}}
                 <div class="media text-muted pt-3">
                     <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32"
                         xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
@@ -125,9 +118,9 @@
                         </small>
                     </p>
                 </div>
-                {{/each}}
-        </main>
-    </form>
+                {{/each}} --}}
+    {{!-- </main> --}}
+    {{!-- </form> --}}
 </body>
 
 </html>
