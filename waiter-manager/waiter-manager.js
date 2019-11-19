@@ -1,6 +1,6 @@
 let Services = require('../service')
 module.exports = function Waiter_manage_system(pool) {
-    let services = Services(pool)
+    let services = Services(pool);
     let current_user;
     let error = "";
     let success = "";
@@ -37,6 +37,7 @@ module.exports = function Waiter_manage_system(pool) {
         return days;
     };
 
+
     const build_days = async (days, element, status) => {
         let week = days.charAt(0).toUpperCase() + days.slice(1).toLowerCase();
         let get_by_day = await services.get_by_day(week)
@@ -60,6 +61,7 @@ module.exports = function Waiter_manage_system(pool) {
         success = "Account successfully created now you can log in";
     };
 
+    
     const display_current = async name => {
         error = "";
         let name_list = await services.get_by_name(name)
