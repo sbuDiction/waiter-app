@@ -57,11 +57,11 @@ module.exports = function Waiter_manage_system(pool) {
             error = "You already have an account try logging in please";
             return true;
         }
+        // success = "Account successfully created now you can log in";
         await pool.query("INSERT INTO user_names (waiter_name,passcode) VALUES ($1,$2);", [waiter_name, passcode]);
-        success = "Account successfully created now you can log in";
     };
 
-    
+
     const display_current = async name => {
         error = "";
         let name_list = await services.get_by_name(name)

@@ -18,7 +18,6 @@ module.exports = function(instance_for_waiter) {
     let passcode = req.body.passcode;
     await instance_for_waiter.register(name, passcode);
     res.redirect("/");
-    // req.flash("yes", 'Account created you can now log in');
   };
 
   const display_login = async (req, res) => {
