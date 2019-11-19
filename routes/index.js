@@ -77,17 +77,24 @@ module.exports = function(instance_for_waiter) {
     res.redirect("/edit_shifts_for/" + (await instance_for_waiter.user(name)));
   };
 
-  
-
   const render_waiter_for_admin = async (req, res) => {
     let waiter_name = await instance_for_waiter.show();
-    console.log(waiter_name);
-    
-    res.render("index", {
+
+    res.render("edit", {
       name: waiter_name,
       Waiter: await instance_for_waiter.work(waiter_name),
       check_box: await instance_for_waiter.return_checked(waiter_name)
     });
+  };
+
+  const add_shift_for = async (req, res) => {
+    let days = req.body.day;
+    let name = req.body.waiter;
+
+    await instance_for_waiter.add(name, days);
+    
+    req.flash("success", "Shift has been updated for" + " " + name);
+    res.redirect('/admin');
   };
 
   const remove_all = async (req, res) => {
@@ -107,6 +114,7 @@ module.exports = function(instance_for_waiter) {
     admin,
     remove,
     remove_all,
-    render_waiter_for_admin
+    render_waiter_for_admin,
+    add_shift_for
   };
 };

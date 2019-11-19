@@ -64,7 +64,11 @@ app.get("/signup", instance_for_routes.display_sigup);
 app.post("/welcome", instance_for_routes.log_in);
 app.get("/waiter/:username", instance_for_routes.index);
 app.get("/admin", instance_for_routes.admin);
+//adding shifts posts
 app.post("/add_shift", instance_for_routes.add_shift);
+app.post("/add_shift_for", instance_for_routes.add_shift_for);
+//
+
 app.post("/build", instance_for_routes.build);
 app.get("/building", instance_for_routes.render_build);
 app.get("/remove/:name", instance_for_routes.remove);
