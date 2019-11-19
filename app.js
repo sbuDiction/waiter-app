@@ -42,7 +42,6 @@ app.use(bodyParser.json());
 
 const Routes = require("./routes/index");
 const Function = require("./waiter-manager/waiter-manager");
-const Helpers = require("./custom-helpers");
 const instance_for_waiter = Function(pool);
 const instance_for_routes = Routes(instance_for_waiter);
 
